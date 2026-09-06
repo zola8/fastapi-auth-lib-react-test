@@ -4,18 +4,16 @@ import type { StatusState } from './types'
 
 // ----- Constants -------------------------------------------------------------
 
-const DEFAULT_EMAIL = 'user123@email.com'
-const DEFAULT_PASSWORD = 'password123'
-const API_ENDPOINT = 'http://localhost:8080/api/v1/auth/register/password'
+const API_ENDPOINT = 'http://localhost:8080/api/v1/auth/activate'
 
 
 // ----- API function ----------------------------------------------------------
 
-async function registerUser(email: string, password: string) {
+async function activateAccount(token: string) {
   const response = await fetch(API_ENDPOINT, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email, password }),
+    body: JSON.stringify({ token }),
   })
 
   const data = await response.json()
@@ -24,9 +22,8 @@ async function registerUser(email: string, password: string) {
 
 // ----- Component -------------------------------------------------------------
 
-const RegistrationWithPasswordPage: React.FC = () => {
-  const [email, setEmail] = useState(DEFAULT_EMAIL)
-  const [password, setPassword] = useState(DEFAULT_PASSWORD)
+const ActivationPage: React.FC = () => {
+  const [token, setToken] = useState('')
   const [status, setStatus] = useState<StatusState>({ type: '', message: '' })
   const [isLoading, setIsLoading] = useState(false)
 
@@ -36,22 +33,22 @@ const RegistrationWithPasswordPage: React.FC = () => {
     setIsLoading(true)
 
     try {
-      const { response, data } = await registerUser(email, password)
-      console.log('Registration response:', JSON.stringify({ status: response.status, data }, null, 2));
+      const { response, data } = await activateAccount(token)
+      console.log('Activation response:', JSON.stringify({ status: response.status, data }, null, 2))
 
       if (response.ok) {
         setStatus({
           type: 'success',
-          message: 'Registration successful! Check console for details.',
+          message: 'Account activated successfully! You can now log in.',
         })
       } else {
         const errorMessage =
-          data.error_msg || 'Something went wrong';
+          data.error_msg || 'Activation failed. Please check your token.'
 
         setStatus({
           type: 'error',
           message: `Error ${response.status}: ${errorMessage}`,
-        });
+        })
       }
     } catch (error) {
       console.error('Network error:', error)
@@ -66,9 +63,9 @@ const RegistrationWithPasswordPage: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[60vh] px-4">
-      <h1 className="text-4xl font-bold text-olive-800 mb-2">Create an Account</h1>
+      <h1 className="text-4xl font-bold text-olive-800 mb-2">Activate Your Account</h1>
       <p className="text-lg text-olive-600 mb-8">
-        Register with email and password to test the authentication library
+        Paste the activation token you received to verify your account
       </p>
 
       <form
@@ -76,34 +73,18 @@ const RegistrationWithPasswordPage: React.FC = () => {
         className="w-full max-w-md bg-white shadow-md rounded-lg p-6 space-y-4"
       >
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-olive-700">
-            Email
+          <label htmlFor="token" className="block text-sm font-medium text-olive-700">
+            Activation Token
           </label>
           <input
-            id="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            id="token"
+            type="text"
+            value={token}
+            onChange={(e) => setToken(e.target.value)}
             required
-            autoComplete="email"
+            autoComplete="off"
             className="mt-1 w-full px-3 py-2 border border-olive-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-olive-500 focus:border-olive-500"
-            placeholder="user@example.com"
-          />
-        </div>
-
-        <div>
-          <label htmlFor="password" className="block text-sm font-medium text-olive-700">
-            Password
-          </label>
-          <input
-            id="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            autoComplete="new-password"
-            className="mt-1 w-full px-3 py-2 border border-olive-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-olive-500 focus:border-olive-500"
-            placeholder=""
+            placeholder="Paste your token here"
           />
         </div>
 
@@ -112,7 +93,7 @@ const RegistrationWithPasswordPage: React.FC = () => {
           disabled={isLoading}
           className="w-full bg-olive-700 hover:bg-olive-800 text-white font-semibold py-2 px-4 rounded-md transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {isLoading ? 'Registering...' : 'Register'}
+          {isLoading ? 'Activating...' : 'Activate Account'}
         </button>
 
         {status.message && (
@@ -132,4 +113,4 @@ const RegistrationWithPasswordPage: React.FC = () => {
   )
 }
 
-export default RegistrationWithPasswordPage
+export default ActivationPage
