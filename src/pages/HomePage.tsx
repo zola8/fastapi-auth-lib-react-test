@@ -33,6 +33,18 @@ const HomePage: React.FC = () => {
           <br />
           After the registration (in email) you received an activation token, to activate your user profile.
         </p>
+
+        <p className="text-lg text-olive-600 mb-4">
+          <a
+            href="/resend-activation"
+            className="text-olive-700 font-semibold underline hover:text-olive-900 hover:no-underline transition duration-200"
+          >
+            03. Re-send activation
+          </a>
+          <br />
+          The activation token can expire or lost. You might need to re-send the activation.
+        </p>
+
       </div>
     </div>
   )
