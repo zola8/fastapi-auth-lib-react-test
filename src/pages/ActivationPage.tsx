@@ -10,10 +10,13 @@ const API_ENDPOINT = 'http://localhost:8080/api/v1/auth/activate'
 // ----- API function ----------------------------------------------------------
 
 async function activateAccount(token: string) {
-  const response = await fetch(API_ENDPOINT, {
-    method: 'POST',
+  // Build URL with query parameter
+  const url = new URL(API_ENDPOINT)
+  url.searchParams.append('token', token)
+
+  const response = await fetch(url.toString(), {
+    method: 'GET',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ token }),
   })
 
   const data = await response.json()

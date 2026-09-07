@@ -17,7 +17,7 @@ const HomePage: React.FC = () => {
             href="/register-password"
             className="text-olive-700 font-semibold underline hover:text-olive-900 hover:no-underline transition duration-200"
           >
-            01. Register with password
+            01.a) Register with password
           </a>
           <br />
           The first step of Registration Workflow can be the 'register with password'.
@@ -43,6 +43,17 @@ const HomePage: React.FC = () => {
           </a>
           <br />
           The activation token can expire or lost. You might need to re-send the activation.
+        </p>
+
+        <p className="text-lg text-olive-600 mb-4">
+          <a
+            href="/forgot-reset-password"
+            className="text-olive-700 font-semibold underline hover:text-olive-900 hover:no-underline transition duration-200"
+          >
+            04. Forgot & Reset Password
+          </a>
+          <br />
+          Oooops, I forgot my password! I must request a change, then perform the change.
         </p>
 
       </div>
