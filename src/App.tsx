@@ -6,6 +6,9 @@ import Layout from './pages/Layout'
 import NotFoundPage from './pages/NotFound'
 import RegistrationWithPasswordPage from './pages/RegistrationWithPasswordPage'
 import ReSendActivationPage from './pages/ReSendActivationPage'
+import LoginWithPasswordPage from './pages/LoginWithPasswordPage'
+import MyProfilePage from './pages/MyProfilePage'
+import LogoutPage from './pages/LogoutPage'
 
 function App() {
   return (
@@ -17,6 +20,9 @@ function App() {
         <Route path="/activate-account" element={<ActivationPage />} />
         <Route path="/resend-activation" element={<ReSendActivationPage />} />
         <Route path="/forgot-reset-password" element={<ForgotResetPasswordPage />} />
+        <Route path="/login-password" element={<LoginWithPasswordPage />} />
+        <Route path="/me" element={<MyProfilePage />} />
+        <Route path="/logout" element={<LogoutPage />} />
 
         <Route path="*" element={<NotFoundPage />} />
       </Route>

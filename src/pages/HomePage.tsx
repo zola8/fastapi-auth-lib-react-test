@@ -56,6 +56,40 @@ const HomePage: React.FC = () => {
           Oooops, I forgot my password! I must request a change, then perform the change.
         </p>
 
+        <p className="text-lg text-olive-600 mb-4">
+          <a
+            href="/login-password"
+            className="text-olive-700 font-semibold underline hover:text-olive-900 hover:no-underline transition duration-200"
+          >
+            05. Login with Password
+          </a>
+          <br />
+          After registration and activation, you can login with your email and password.
+          The backend verifies them and gives you an <i>access token</i> and a <i>refresh token</i>.
+        </p>
+
+        <p className="text-lg text-olive-600 mb-4">
+          <a
+            href="/me"
+            className="text-olive-700 font-semibold underline hover:text-olive-900 hover:no-underline transition duration-200"
+          >
+            06. My Profile - /me
+          </a>
+          <br />
+          If you are registered, you can see your profile. (Only the logged-in-user is here)
+        </p>
+
+        <p className="text-lg text-olive-600 mb-4">
+          <a
+            href="/logout"
+            className="text-olive-700 font-semibold underline hover:text-olive-900 hover:no-underline transition duration-200"
+          >
+            07. Logout & Logout Everywhere
+          </a>
+          <br />
+          You can invalidate your (every) sessions.
+        </p>
+
       </div>
     </div>
   )
