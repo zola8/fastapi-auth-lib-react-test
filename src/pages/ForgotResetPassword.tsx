@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import type { StatusState } from './types' // adjust path as needed
+import type { StatusState } from '../common/types' // adjust path as needed
 
 // ----- Constants -------------------------------------------------------------
 

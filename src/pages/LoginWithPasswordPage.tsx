@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import type { StatusState } from './types'
-import { setTokens } from './auth'
+import type { StatusState } from '../common/types'
+import { setTokens } from '../common/auth'
 
 // ----- Constants -------------------------------------------------------------
 

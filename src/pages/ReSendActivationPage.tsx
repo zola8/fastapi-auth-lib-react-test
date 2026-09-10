@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import type { StatusState } from './types'
+import type { StatusState } from '../common/types'
 
 // ----- Constants -------------------------------------------------------------
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import type { StatusState } from './types'
-import { apiFetch, getRefreshToken, clearTokens } from './auth'
+import type { StatusState } from '../common/types'
+import { apiFetch, getRefreshToken, clearTokens } from '../common/auth'
 
 // ----- API functions ---------------------------------------------------------
 
@@ -54,7 +54,6 @@ const LogoutPage: React.FC = () => {
 
     try {
       const refreshToken = getRefreshToken()
-      console.log('---- handleSingleLogout, refreshToken:', refreshToken)
       if (!refreshToken) {
         setSingleStatus({
           type: 'error',
@@ -67,8 +66,7 @@ const LogoutPage: React.FC = () => {
       console.log('Logout response:', JSON.stringify({ status: response.status, data }, null, 2))
 
       if (response.ok) {
-        console.log('----- response.ok')
-        //clearTokens()
+        clearTokens()
         setSingleStatus({
           type: 'success',
           message: data?.message || 'Logged out successfully.',

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import type { StatusState, UserProfile } from './types'
-import { apiFetch } from './auth'
+import type { StatusState, UserProfile } from '../common/types'
+import { apiFetch } from '../common/auth'
 
 
 // ----- Helpers ---------------------------------------------------------------
